@@ -22,7 +22,7 @@ note: argc is always 1 + args
 
 ##ToDo:
 
-- [x] Finish writing the quizmaker
+~~Finish writing the quizmaker~~
 - [ ] Open chatgpt and bing ai
 - [ ] search cppreference
 - [ ] 
