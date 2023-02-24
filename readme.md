@@ -22,7 +22,8 @@ note: argc is always 1 + args
 
 ##ToDo:
 
-1. Finish writing the quizmaker
-2. Write functionality to open .gov or .org sites using `study www somesite`
-   note: I know I am complicating things here, but this is for learning purposes.
+- [x] Finish writing the quizmaker
+- [ ] Open chatgpt and bing ai
+- [ ] search cppreference
+- [ ] 
 
