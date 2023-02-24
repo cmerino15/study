@@ -8,13 +8,10 @@ void help_menu(int argc, char *argv[]);
 void quiz_maker();
 void create_quiz();
 void take_quiz();
-void modify_quiz();
-void delete_quiz();
 void question_in_out(std::string quiz_name);
 int main(int argc, char *argv[])
 {
-
-    HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, 10);
 
     if (argc == 1)
@@ -25,9 +22,9 @@ int main(int argc, char *argv[])
     else if (argc == 2 || argc == 3)
     {
 
-        std::string argv1(argv[1]); //need to convert
+        std::string argv1(argv[1]); // need to convert
 
-        if (argv1 == "help" || argv1 == "h" || argv1 == "HELP" || argv1=="--h" || argv1 =="/h" || argv1 =="-h") // need to convert
+        if (argv1 == "help" || argv1 == "h" || argv1 == "HELP" || argv1 == "--h" || argv1 == "/h" || argv1 == "-h") // need to convert
         {
             help_menu(argc, argv);
         }
@@ -35,31 +32,30 @@ int main(int argc, char *argv[])
         {
             std::string engword(argv[2]);
             std::string site = "https://translate.google.com/#view=home&op=translate&sl=en&tl=fr&text=" + engword;
-            //Works -- see www version
+            // Works -- see www version
             ShellExecute(0, 0, site.c_str(), 0, 0, SW_SHOW); // note the precompiler error of LPCWSTR vs Compiler error of LPCSTR
         }
         else if (argv1 == "www")
         {
-	    // todo: write code for .net, .gov, etc.
             std::string host(argv[2]);
-            std::string site = "http://www." + host + ".com";
-            //Works
-            //ShellExecute(0, 0, "http://www.google.com", 0, 0, SW_SHOW);
+            std::string site = "http://www." + host;
+            // Works
+            // ShellExecute(0, 0, "http://www.google.com", 0, 0, SW_SHOW);
             ShellExecute(0, 0, site.c_str(), 0, 0, SW_SHOW); // note the precompiler error of LPCWSTR vs Compiler error of LPCSTR
 
-            //Still trying to figure out how to get rid of precompiler error...may be an error itself...
-            //const wchar_t* site = host;
-            //std::cout << host;
-            //std::cout << argv[2];
-            //int url_length = site.length();
-            //char url[100]; // can't use url_length here because it's not constant...:(
-            //std::cout << site;
-            //std::string url = site.c_str());
-            //ShellExecute(0, 0, site.c_str(), 0, 0, SW_SHOW);
-            //ShellExecute(0,0, L"site",0,0,SW_SHOW);
-            //std::wstring site = L"http://www.google.com";
-            //ShellExecute(0, 0, site.c_str(), 0, 0, SW_SHOW);
-            //std::wstring site = L"http://www.yahoo.com";
+            // Still trying to figure out how to get rid of precompiler error...may be an error itself...
+            // const wchar_t* site = host;
+            // std::cout << host;
+            // std::cout << argv[2];
+            // int url_length = site.length();
+            // char url[100]; // can't use url_length here because it's not constant...:(
+            // std::cout << site;
+            // std::string url = site.c_str());
+            // ShellExecute(0, 0, site.c_str(), 0, 0, SW_SHOW);
+            // ShellExecute(0,0, L"site",0,0,SW_SHOW);
+            // std::wstring site = L"http://www.google.com";
+            // ShellExecute(0, 0, site.c_str(), 0, 0, SW_SHOW);
+            // std::wstring site = L"http://www.yahoo.com";
         }
         else if (argv1 == "cmd")
         {
@@ -80,7 +76,7 @@ int main(int argc, char *argv[])
         std::cout << "Try a.exe help\n";
     }
 
-    SetConsoleTextAttribute(hConsole,7);
+    SetConsoleTextAttribute(hConsole, 7);
     return 0;
 }
 
@@ -103,6 +99,7 @@ void help_menu(int argc, char *argv[])
     if (choice == 1)
     {
         std::cout << "To go to a website enter a.exe www hostname\n";
+        std::cout << "For example a.exe www google.com or a.exe www MSDN.net\n";
     }
     else if (choice == 2)
     {
@@ -140,8 +137,8 @@ void help_menu(int argc, char *argv[])
 void quiz_maker()
 {
     std::cout << "1. Create a New Quiz\n";
-    std::cout << "2. Take a  Quiz\n";  // write code
-    std::cout << "3. Modify a Quiz\n"; // use ios::std::app probably and display the quiz first
+    std::cout << "2. Take a  Quiz\n";
+    std::cout << "3. Modify a Quiz\n";
     std::cout << "Enter a value...\n";
     int quiz_choice;
     std::cin >> quiz_choice;
@@ -152,17 +149,8 @@ void quiz_maker()
         break;
 
     case 2:
-        take_quiz(); // finish
+        take_quiz();
         break;
-
-    case 3:
-        modify_quiz(); //finish
-        break;
-
-    case 4:
-        delete_quiz(); //finish
-        break;
-
     default:
         std::cout << "Invalid Choice Entered\n";
         break;
@@ -175,7 +163,7 @@ void create_quiz()
     std::ifstream fin;
 
     std::cout << "What would you like to name the quiz?\n";
-    std::cout << "The quiz will be saved as yourchoiceofname.txt\n";
+    std::cout << "The quiz will be saved as name.txt\n";
     std::string name, dummystring;
     std::cin.ignore(1, '\n');
     getline(std::cin, name);
@@ -183,7 +171,7 @@ void create_quiz()
     fout.open("quizlog.txt", std::ios::app); // just to create for the first time
     fout.close();
 
-    //checks for duplicates
+    // checks for duplicates
     std::string dummy;
     bool dupl = 0;
     fin.open("quizlog.txt");
@@ -212,13 +200,39 @@ void create_quiz()
 }
 void take_quiz()
 {
-}
-void modify_quiz()
-{
-}
-
-void delete_quiz()
-{
+    std::ifstream fin;
+    std::string quiz_name, question, answer, dummy;
+    int score = 0, total = 0;
+    std::cout << "Enter the name of the quiz you want to take\n";
+    std::cin.ignore(1, '\n');
+    getline(std::cin, quiz_name);
+    fin.open(quiz_name + ".txt");
+    if (fin)
+    {
+        do
+        {
+            getline(fin, question);
+            getline(fin, answer);
+            std::cout << question << std::endl;
+            getline(std::cin, dummy);
+            if (dummy == answer)
+            {
+                std::cout << "Correct!\n";
+                score++;
+            }
+            else
+            {
+                std::cout << "Incorrect!\n";
+            }
+            total++;
+        } while (fin);
+        fin.close();
+        std::cout << "You got " << score << " out of " << total << std::endl;
+    }
+    else
+    {
+        std::cout << "Error: That quiz does not exist\n";
+    }
 }
 void question_in_out(std::string quiz_name)
 {
@@ -239,5 +253,4 @@ void question_in_out(std::string quiz_name)
         std::cin >> choice;
         std::cin.ignore(1, '\n');
     } while (choice == 'y');
-    
 }
