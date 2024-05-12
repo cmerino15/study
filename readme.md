@@ -28,12 +28,12 @@ then a a.exe file will be created
 
 then just `$ a.exe` or `$ a` should work
 
-note: argc is always 1 + args
+> [!NOTE]
+> argc is always 1 + args
 
 ##ToDo:
 
-~~Finish writing the quizmaker~~
 - [ ] Open chatgpt and bing ai
-- [ ] search cppreference
-- [ ] 
+- [ ] Search cppreference
+- [ ] Make the study app specific to a topic - perhaps just a language learning tool or just a cpp learning tool
 
